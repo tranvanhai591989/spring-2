@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="title">Tạo Mới Cơ Sở</div>
+  <div class="content">
+    <form [formGroup]="basicForm" (ngSubmit)="submit()">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Tên cơ sở</span>
+          <input type="text" formControlName="nameB" placeholder="Tên cơ sở">
+          <p style="color:red"
+             *ngIf="basicForm.controls.nameB.hasError('required') && basicForm.controls.nameB.touched">
+            Không được để trống</p>
+        </div>
+        <div class="input-box">
+          <span class="details">Ngày khai trương</span>
+          <input type="date" formControlName="dayOpen" required>
+          <p style="color:red"
+             *ngIf="basicForm.controls.dayOpen.hasError('required') && basicForm.controls.dayOpen.touched">
+            Không được để trống</p>
+        </div>
+        <div class="input-box">
+          <span class="details">Địa chỉ</span>
+          <input type="text" formControlName="address" placeholder="Địa chỉ" required>
+          <p style="color:red"
+             *ngIf="basicForm.controls.address.hasError('required') && basicForm.controls.address.touched">
+            Không được để trống</p>
+        </div>
+        <div class="input-box">
+          <span class="details">Người quản lý</span>
+          <select class="form-control" formControlName="employee">
+            <option value="" disabled>Vui lòng chọn</option>
+            <option *ngFor="let c of employeeList" [ngValue]="c">{{c.name}}</option>
+          </select>
+          <p style="color:red"
+             *ngIf="basicForm.controls.employee.hasError('required') && basicForm.controls.employee.touched">
+            Không được để trống</p>
+        </div>
+
+      </div>
+      <div class="button">
+        <input type="submit" value="Thêm Mới" [disabled]="!basicForm.valid">
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+

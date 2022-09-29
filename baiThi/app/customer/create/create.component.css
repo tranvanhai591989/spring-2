@@ -1,0 +1,7 @@
+.form-text, span, i {
+  color: red;
+}
+
+label {
+  font-weight: bold;
+}

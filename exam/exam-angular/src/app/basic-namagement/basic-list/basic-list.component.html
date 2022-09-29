@@ -1,0 +1,87 @@
+<div style="text-align: center">
+  <h2>DANH SÁCH CƠ SỞ ABC FITNESS</h2>
+</div>
+<div class="container">
+  <i class="btn btn-success" role="button" routerLink="/basic/create"> Thêm mới</i>
+</div>
+<div class="container" style="min-height: 600px">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên cơ sở</th>
+      <th scope="col">Ngày khai trương</th>
+      <th scope="col">Địa chỉ</th>
+      <th scope="col">Người quản lý</th>
+      <th scope="col"> Xem chi tiết</th>
+      <th scope="col">Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of basicList ; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{item.nameB | uppercase}}</td>
+      <td>{{item.dayOpen | date:'dd/MM/yyyy'}}</td>
+      <td>{{item.address}}</td>
+      <td>{{item.employee.name}}</td>
+      <td>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                (click)="showDetail(item)">
+          Xem chi tiết
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="showDelete(item)">
+          Xóa
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--<div style="text-align: center">-->
+<!--  <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+<!--</div>-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Thông tin nhân viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Tên Nhân Viên : {{nameE}}<br>
+        Mã Nhân Viên : {{code}}<br>
+        Giới tính :{{gender}}<br>
+        Ngày sinh :{{birthDay}}<br>
+        Vị trí :{{position}}<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Xác nhận xóa cơ sở : {{name}}.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(idDelete)">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
