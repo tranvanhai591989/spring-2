@@ -7,6 +7,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String author;
     private String name;
     private String code;
     private String description;
@@ -21,10 +22,6 @@ public class Book {
     private boolean status;
 
     @ManyToOne
-    @JoinColumn(name = "author", referencedColumnName = "id")
-    private Author author;
-
-    @ManyToOne
     @JoinColumn(name = "discount", referencedColumnName = "id")
     private Discount discount;
 
@@ -35,7 +32,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Integer id, String name, String code, String description, String dimension, String image, String publisher, Integer quantity, String releaseDate, double price, Integer totalPages, String translator, boolean status, Author author, Discount discount, Category category) {
+    public Book(Integer id, String name, String code, String description, String dimension, String image, String publisher, Integer quantity, String releaseDate, double price, Integer totalPages, String translator, boolean status,  Discount discount, Category category) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -49,7 +46,6 @@ public class Book {
         this.totalPages = totalPages;
         this.translator = translator;
         this.status = status;
-        this.author = author;
         this.discount = discount;
         this.category = category;
     }
@@ -156,14 +152,6 @@ public class Book {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 
     public Discount getDiscount() {
